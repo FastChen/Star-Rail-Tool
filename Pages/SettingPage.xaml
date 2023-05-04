@@ -1,0 +1,74 @@
+﻿<ui:UiPage x:Class="Star_Rail_Tool.Pages.SettingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:Star_Rail_Tool.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SettingPage">
+
+    <Grid>
+        <VirtualizingStackPanel x:Name="RootPanel" IsVirtualizing="True" VirtualizationMode="Recycling" Margin="0,0,38,0">
+            <TextBlock  Text="一些功能在使用前需要再此进行设置配置" TextWrapping="WrapWithOverflow" />
+
+            <!--<TextBlock
+            Margin="0,24,0,0"
+            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+            Text="设置星穹铁道启动器路径" />
+            <ui:CardControl Margin="0,8,0,0" Icon="FolderAdd24">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="设置星穹铁道启动器路径" />
+                        <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                        Text="通过右侧 ... 按钮进行设置" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <Button x:Name="Button_Path_Launcher" Content="..." Click="Button_Path_Launcher_Click"></Button>
+            </ui:CardControl>
+            <StatusBar>
+                <StatusBarItem>
+                    <TextBlock Text="启动器路径："/>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBlock x:Name="TESTC" Text="Line 3, Char 20"/>
+                </StatusBarItem>
+            </StatusBar>-->
+
+            <TextBlock
+            Margin="0,24,0,0"
+            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+            Text="设置星穹铁道启动器(launcher.exe)路径" />
+            <ui:CardExpander
+            Margin="0,8,0,0"
+            Icon="FolderAdd24"
+            IsEnabled="True"
+            IsExpanded="True">
+                <ui:CardExpander.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock FontSize="13" FontWeight="Medium" Text="设置星穹铁道启动器路径" />
+                            <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="通过右侧 ... 按钮进行设置" />
+                        </StackPanel>
+                        <ui:Button x:Name="Button_Path_Launcher" Grid.Column="1" Margin="0,0,16,0" Padding="30,6" VerticalAlignment="Center"  Content="..." Click="Button_Path_Launcher_Click"/>
+                    </Grid>
+                </ui:CardExpander.Header>
+                <StackPanel>
+                    <ui:TextBox x:Name="TextBox_Launcher_Path" Icon="ErrorCircle24" IsEnabled="False" Margin="0,0,0,8"/>
+                    <ui:TextBox x:Name="TextBox_Game_Path" Icon="ErrorCircle24" IsEnabled="False" />
+                </StackPanel>
+            </ui:CardExpander>
+
+        </VirtualizingStackPanel>
+    </Grid>
+</ui:UiPage>

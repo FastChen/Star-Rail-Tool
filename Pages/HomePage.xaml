@@ -1,0 +1,121 @@
+﻿<ui:UiPage x:Class="Star_Rail_Tool.Pages.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:Star_Rail_Tool.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="HomePage">
+
+    <Grid>
+        <VirtualizingStackPanel x:Name="RootPanel" IsVirtualizing="True" VirtualizationMode="Recycling" Margin="0,0,38,0">
+            <TextBlock  Text="本工具处于前期开发阶段，不完善。" TextWrapping="WrapWithOverflow" />
+
+            <TextBlock
+            Margin="0,24,0,0"
+            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+            Text="游戏管理" />
+            <ui:CardControl Margin="0,8,0,0" Icon="PersonRunning20">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="启动游戏" />
+                        <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                        Text="运行启动器 或 绕过启动器从而直接启动游戏" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" >
+                    <ui:Button x:Name="Button_Run_Launcher" Content="运行启动器" Margin="0,0,8,0" Tag="Launcher" Click="Button_Run_Click"></ui:Button>
+                    <ui:Button x:Name="Button_Run_Game"  Content="直接运行游戏" Tag="Game" Click="Button_Run_Click"></ui:Button>
+                </StackPanel>
+            </ui:CardControl>
+
+            <TextBlock Margin="0,24,0,0" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="联系我们" />
+            <Grid Grid.Row="1" Margin="0,8,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <ui:CardAction
+                Grid.Column="0"
+                Margin="0,0,4,0"
+                Click="ButtonAction_OnClick"
+                Icon="CommentMultiple24"
+                Tag="Join">
+                    <StackPanel>
+                        <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="星穹列车一家人" />
+                        <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                        Text="点击此处可加入群聊或手动搜索 [495990072]" />
+                    </StackPanel>
+                </ui:CardAction>
+
+                <ui:CardAction
+                Grid.Column="2"
+                Margin="4,0,0,0"
+                Click="ButtonAction_OnClick"
+                Icon="Code24"
+                Tag="Github">
+                    <StackPanel>
+                        <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="拥抱开源" />
+                        <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                        Text="本程序源代码已托管至 Github" />
+                    </StackPanel>
+                </ui:CardAction>
+            </Grid>
+
+            <Grid Grid.Row="2" Margin="0,12,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ui:Hyperlink
+                Grid.Row="0"
+                Margin="0,0,0,4"
+                Content="作者博客 FastChen.com"
+                Icon="Link48"
+                NavigateUri="https://fastchen.com" />
+
+                <ui:Hyperlink
+                Grid.Row="1"
+                Margin="0,0,0,4"
+                Content="星穹铁道信息收集问卷(腾讯问卷)"
+                NavigateUri="https://wj.qq.com/s2/12239561/0e6c/"
+                Icon="Link48" />
+
+                <ui:Hyperlink
+                Grid.Row="2"
+                Margin="0,0,0,4"
+                Content="提瓦特厨神交流群"
+                Icon="Link48"
+                NavigateUri="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&amp;k=Vn7_Q3yCmp0zbt-gBLcW5kwC9CbTrcdI&amp;authKey=JumukXM1WphDFfGMqT2yL0qNG01ZrW4lVNJeReR2tSn9r18hekXWtf%2BonnlJK5uB&amp;noverify=0&amp;group_code=711723320" />
+
+                <ui:Hyperlink
+                Grid.Row="3"
+                Margin="0,0,0,4"
+                Content="捐助以支持开发"
+                NavigateUri="https://docs.nullcraft.org/donate"
+                Icon="Link48" />
+            </Grid>
+
+        </VirtualizingStackPanel>
+    </Grid>
+</ui:UiPage>

@@ -1,0 +1,50 @@
+﻿<ui:UiPage x:Class="Star_Rail_Tool.Pages.ChannelSwitchPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:Star_Rail_Tool.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ChannelSwitchPage" Loaded="UiPage_Loaded">
+
+    <Grid>
+        <VirtualizingStackPanel x:Name="RootPanel" IsVirtualizing="True" VirtualizationMode="Recycling" Margin="0,0,38,0">
+            <TextBlock  Text="用于一个游戏客户端登录不同服务器，第一次使用需要先到 [本体设置] 中设置启动器路径" TextWrapping="WrapWithOverflow" />
+
+            <TextBlock
+            Margin="0,24,0,0"
+            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+            Text="切换游戏登录服务器  (如遇到切换失败、闪退，则代表需要使用管理员模式运行工具)" />
+            <ui:CardControl Margin="0,8,0,0" Icon="SelectAllOn24">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="登录服务器" />
+                        <TextBlock x:Name="TextBlock_Channel_Type"
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                        Text="请先前往 [本体设置] 页面设置启动器路径。" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <ComboBox x:Name="ComboBox_Channel" Width="200" Margin="0,0,8,0">
+                        <ComboBoxItem Content="X服"></ComboBoxItem>
+                    </ComboBox>
+                    <Button x:Name="Button_Channel_Switch" Content="切换服务器" Click="Button_Channel_Switch_Click" VerticalAlignment="Stretch"></Button>
+                </StackPanel>
+            </ui:CardControl>
+            <TextBlock Margin="0,8,0,0" TextWrapping="WrapWithOverflow" Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+              Text="*第一次使用需要前往左侧选择 [本体设置] 选择启动器路径。&#x0A;*修改登录服务器时需完全退出星穹铁道，以防修改失败。&#x0A;*因切换为B服 [无名客] 时需要额外文件，切换后会自动释放所需文件。&#x0A;*如果修改无效请尝试右键软件 -> 以管理员身份运行。&#x0A;*官服 [星穹铁道] 使用支持 米游社 与 TapTap 扫码登录的登录界面。"
+             />
+
+            <StackPanel Orientation="Vertical" Grid.Row="1">
+                <Button x:Name="Button_Test_A" Content="切换服务器" Click="Button_Test_A_Click" VerticalAlignment="Stretch"></Button>
+                <Button x:Name="Button_Test_B" Content="切换服务器" Click="Button_Test_B_Click" VerticalAlignment="Stretch"></Button>
+            </StackPanel>
+        </VirtualizingStackPanel>
+    </Grid>
+</ui:UiPage>
