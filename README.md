@@ -47,15 +47,20 @@
 ## Q&A
 
 **Q：这个工具可以干嘛？**
+
 A：目前可以切换服务器、解锁帧数、更改游戏设置。
--
+
+---
+
 **Q：使用会导致封号吗？**
+
 A1："怕别用，用别怕，封别叫"
+
 A2：工具都是基于官方自带的功能实现，理论上不会封号。因为不是操作内存注入什么的那种工具。
--
+
 ## 一起讨论游戏
 [星穹列车一家人:495990072](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=L8I9jFbNKaJDKBQutIkcEfElaxBEtFGF&authKey=%2BmS56faj%2FbeeZiJj8Nv32aEjCnwt4GBy52jkFJ1XT1Exxc9UxICteShzKWdZATrI&noverify=0&group_code=495990072)
 
-## # 捐助支持
+## 捐助支持
 
 [捐助我们](https://docs.nullcraft.org/donate) | [爱发电](https://afdian.net/@fastchen)
