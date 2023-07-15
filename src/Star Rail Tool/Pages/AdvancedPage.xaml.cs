@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Ui.Common;
 using Wpf.Ui.Controls;
 
 namespace Star_Rail_Tool.Pages
@@ -26,7 +27,38 @@ namespace Star_Rail_Tool.Pages
         public AdvancedPage()
         {
             InitializeComponent();
+        }
+
+        private void UiPage_Loaded(object sender, RoutedEventArgs e)
+        {
             InitializeSetting();
+            GetFPS();
+        }
+
+        private void GetFPS()
+        {
+            int fps = GameHelper.GetFPS();
+            SymbolRegular icon;
+            string title;
+            switch (fps)
+            {
+                case 120:
+                    icon = SymbolRegular.Fps12024;
+                    break;
+                case 60:
+                    icon = SymbolRegular.Fps6024;
+                    break;
+                case 30:
+                    icon = SymbolRegular.Fps3024;
+                    break;
+                default:
+                    title = "修改帧数上限";
+                    icon = Wpf.Ui.Common.SymbolRegular.LockClosed24;
+                    break;
+            }
+            title = "当前帧数上限:" + fps;
+            TextBlock_FPS_Title.Text = title;
+            CardControl_FPS.Icon = icon;
         }
 
         private void InitializeSetting()
@@ -101,16 +133,8 @@ namespace Star_Rail_Tool.Pages
             if (sender is not Wpf.Ui.Controls.Button button)
                 return;
 
-            var fps = button.Tag as string;
-
-            if (fps == "120")
-            {
-                GameHelper.Unlock120FPS();
-            }
-            if (fps == "60")
-            {
-                GameHelper.Unlock60FPS();
-            }
+            GameHelper.UnlockFPS(Convert.ToInt16(button.Tag.ToString()));
+            GetFPS();
         }
 
         private void ComboBox_Window_Mode_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -127,5 +151,6 @@ namespace Star_Rail_Tool.Pages
         {
             settingini.WriteValue("Game", "ExtraParam", TextBox_Window_ExtraParam.Text);
         }
+
     }
 }

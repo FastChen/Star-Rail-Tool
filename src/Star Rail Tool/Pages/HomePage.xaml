@@ -6,17 +6,18 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       xmlns:local="clr-namespace:Star_Rail_Tool.Pages"
       mc:Ignorable="d" 
+      Scrollable="True"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HomePage">
 
-    <Grid>
+    <Grid Margin="0,0,0,24">
         <VirtualizingStackPanel x:Name="RootPanel" IsVirtualizing="True" VirtualizationMode="Recycling" Margin="0,0,38,0">
             <TextBlock  Text="本工具处于前期开发阶段，不完善。" TextWrapping="WrapWithOverflow" />
 
             <TextBlock
             Margin="0,24,0,0"
             Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-            Text="游戏管理" />
+            Text="游戏管理" FontSize="14" />
             <ui:CardControl Margin="0,8,0,0" Icon="PersonRunning20">
                 <ui:CardControl.Header>
                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
@@ -36,7 +37,7 @@
                 </StackPanel>
             </ui:CardControl>
 
-            <TextBlock Margin="0,24,0,0" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="联系我们" />
+            <TextBlock Margin="0,24,0,0" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="联系我们" FontSize="14" />
             <Grid Grid.Row="1" Margin="0,8,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -85,7 +86,6 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <ui:Hyperlink
                 Grid.Row="0"
@@ -97,19 +97,12 @@
                 <ui:Hyperlink
                 Grid.Row="1"
                 Margin="0,0,0,4"
-                Content="星穹铁道信息收集问卷(腾讯问卷)"
-                NavigateUri="https://wj.qq.com/s2/12239561/0e6c/"
-                Icon="Link48" />
-
-                <ui:Hyperlink
-                Grid.Row="2"
-                Margin="0,0,0,4"
                 Content="提瓦特厨神交流群"
                 Icon="Link48"
                 NavigateUri="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&amp;k=Vn7_Q3yCmp0zbt-gBLcW5kwC9CbTrcdI&amp;authKey=JumukXM1WphDFfGMqT2yL0qNG01ZrW4lVNJeReR2tSn9r18hekXWtf%2BonnlJK5uB&amp;noverify=0&amp;group_code=711723320" />
 
                 <ui:Hyperlink
-                Grid.Row="3"
+                Grid.Row="2"
                 Margin="0,0,0,4"
                 Content="捐助以支持开发"
                 NavigateUri="https://docs.nullcraft.org/donate"

@@ -9,10 +9,19 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Controls\AudioSettingsControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\GraphicsSettingsControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\AdvancedPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\ChannelSwitchPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\GetWarpLinkPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\HomePage.xaml.cs">
@@ -23,6 +32,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Controls\AudioSettingsControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\GraphicsSettingsControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -30,6 +45,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\ChannelSwitchPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\GetWarpLinkPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\HomePage.xaml">

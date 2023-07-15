@@ -60,5 +60,6 @@ namespace Star_Rail_Tool
             proc.StartInfo.FileName = url;
             proc.Start();
         }
+
     }
 }

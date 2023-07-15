@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -9,10 +10,13 @@ namespace Star_Rail_Tool
         public string inipath;
 
         //声明API函数
-
         [DllImport("kernel32")]
         private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
-        [DllImport("kernel32")]
+
+        //[DllImport("kernel32", CharSet = CharSet.Ansi)]
+        //private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
+        [DllImport("kernel32.dll")]
         private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
 
         /// <summary> 
@@ -52,8 +56,8 @@ namespace Star_Rail_Tool
         /// <param name="Key">键</param> 
         public string ReadValue(string Section, string Key, string Default = "")
         {
-            StringBuilder temp = new StringBuilder(500);
-            int i = GetPrivateProfileString(Section, Key, "", temp, 500, this.inipath);
+            StringBuilder temp = new StringBuilder(4096);
+            int i = GetPrivateProfileString(Section, Key, "", temp, 4096, this.inipath);
             if (string.IsNullOrEmpty(temp.ToString()))
             {
                 return Default;

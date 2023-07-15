@@ -6,50 +6,22 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       xmlns:local="clr-namespace:Star_Rail_Tool.Pages"
       mc:Ignorable="d" 
+      Scrollable="True"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SettingPage">
 
-    <Grid>
+    <Grid Margin="0,0,0,24">
         <VirtualizingStackPanel x:Name="RootPanel" IsVirtualizing="True" VirtualizationMode="Recycling" Margin="0,0,38,0">
             <TextBlock  Text="一些功能在使用前需要再此进行设置配置" TextWrapping="WrapWithOverflow" />
-
-            <!--<TextBlock
-            Margin="0,24,0,0"
-            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-            Text="设置星穹铁道启动器路径" />
-            <ui:CardControl Margin="0,8,0,0" Icon="FolderAdd24">
-                <ui:CardControl.Header>
-                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                        <TextBlock
-                        FontSize="13"
-                        FontWeight="Medium"
-                        Text="设置星穹铁道启动器路径" />
-                        <TextBlock
-                        FontSize="12"
-                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
-                        Text="通过右侧 ... 按钮进行设置" />
-                    </StackPanel>
-                </ui:CardControl.Header>
-                <Button x:Name="Button_Path_Launcher" Content="..." Click="Button_Path_Launcher_Click"></Button>
-            </ui:CardControl>
-            <StatusBar>
-                <StatusBarItem>
-                    <TextBlock Text="启动器路径："/>
-                </StatusBarItem>
-                <StatusBarItem>
-                    <TextBlock x:Name="TESTC" Text="Line 3, Char 20"/>
-                </StatusBarItem>
-            </StatusBar>-->
 
             <TextBlock
             Margin="0,24,0,0"
             Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-            Text="设置星穹铁道启动器(launcher.exe)路径" />
-            <ui:CardExpander
-            Margin="0,8,0,0"
-            Icon="FolderAdd24"
-            IsEnabled="True"
-            IsExpanded="True">
+            Text="设置星穹铁道启动器(launcher.exe)路径" FontSize="14" />
+
+            <ui:InfoBar Title="提示" Message="通常选择启动器(launcher.exe)就可以自动绑定游戏本体，除非特殊情况会需要手动选择游戏本体。" IsOpen="True" IsClosable="False" Margin="0,8,0,0"/>
+
+            <ui:CardExpander Margin="0,8,0,0" Icon="FolderAdd24" IsEnabled="True" IsExpanded="True">
                 <ui:CardExpander.Header>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -68,6 +40,45 @@
                     <ui:TextBox x:Name="TextBox_Game_Path" Icon="ErrorCircle24" IsEnabled="False" />
                 </StackPanel>
             </ui:CardExpander>
+
+            
+            <TextBlock Margin="0,24,0,0" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="外观" FontSize="14" />
+
+
+            <ui:CardControl Margin="0,8,0,0" Icon="Color24">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="主题设置" />
+                        <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                        Text="设置软件主题配色" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <ComboBox x:Name="ComboBox_Theme" Width="200" DisplayMemberPath="Name" SelectedValuePath="Value" SelectionChanged="ComboBox_Theme_SelectionChanged" />
+            </ui:CardControl>
+
+            <ui:CardControl Margin="0,8,0,0" Icon="Earth24">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="语言设置" />
+                        <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                        Text="设置软件显示的语言" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <ComboBox x:Name="ComboBox_Language" Width="200" SelectedIndex="0" SelectionChanged="ComboBox_Language_SelectionChanged" >
+                    <ComboBoxItem Content="简体中文"></ComboBoxItem>
+                </ComboBox>
+            </ui:CardControl>
+
 
         </VirtualizingStackPanel>
     </Grid>

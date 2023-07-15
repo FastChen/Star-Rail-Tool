@@ -4,14 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-             
         xmlns:local="clr-namespace:Star_Rail_Tool"
         xmlns:page="clr-namespace:Star_Rail_Tool.Pages"
-        Background="{ui:ThemeResource ApplicationBackgroundBrush}"
+        Width="1200"
+        Height="600"
+	    MinWidth="1080"
+		MinHeight="560"
+        Background="{DynamicResource ApplicationBackgroundBrush}"
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica"
         WindowCornerPreference="Round"
-        WindowStartupLocation="CenterScreen" Width="1200" Height="600" Loaded="UiWindow_Loaded">
+        WindowStartupLocation="CenterScreen"
+        Loaded="UiWindow_Loaded"  Closed="UiWindow_Closed" mc:Ignorable="d">
     <Grid>
 
         <Grid>
@@ -26,11 +30,10 @@
                     <ui:NavigationSeparator></ui:NavigationSeparator>
                     <ui:NavigationItem Content="服务器切换" Icon="DesktopCursor24" PageTag="ChannelSwitch" PageType="{x:Type page:ChannelSwitchPage}" />
                     <ui:NavigationItem Content="进阶启动" Icon="KeyCommand24" PageTag="Advanced" PageType="{x:Type page:AdvancedPage}"/>
+                    <ui:NavigationItem Content="获取跃迁链接" Icon="LinkSquare24" PageTag="GetWarpLink" PageType="{x:Type page:GetWarpLinkPage}"/>
                 </ui:NavigationCompact.Items>
                 <ui:NavigationCompact.Footer>
-                    <!--  A navigation element that does not point to the page can be used as a button.  -->
-                    <!--<ui:NavigationItem Content="账户管理" Icon="PeopleAdd24" PageType="{x:Type page:AdvancedPage}" />-->
-                    <ui:NavigationItem Content="主题切换" Icon="DarkTheme24" Click="NavigationButtonTheme_OnClick" />
+                    <!--<ui:NavigationItem Content="主题切换" Icon="DarkTheme24" Click="NavigationButtonTheme_OnClick" />-->
                     <ui:NavigationSeparator></ui:NavigationSeparator>
                     <ui:NavigationItem Content="本体设置" Icon="Settings24" PageTag="Setting" PageType="{x:Type page:SettingPage}" />
                 </ui:NavigationCompact.Footer>
@@ -41,7 +44,9 @@
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            Margin="42,0,0,0"/>
+            Margin="42,0,0,0"
+            Icon="pack://application:,,,/Resources/StarRail_NullCraft.png"
+            />
 
             <Grid Grid.Column="1" x:Name="Test">
                 <Border

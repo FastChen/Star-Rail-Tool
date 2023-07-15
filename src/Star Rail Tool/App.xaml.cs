@@ -29,11 +29,11 @@ namespace Star_Rail_Tool
         void App_Startup(object sender, StartupEventArgs e)
         {
             //UI线程未捕获异常处理事件
-            //this.DispatcherUnhandledException += new DispatcherUnhandledExceptionEventHandler(App_DispatcherUnhandledException);
+            this.DispatcherUnhandledException += new DispatcherUnhandledExceptionEventHandler(App_DispatcherUnhandledException);
             //Task线程内未捕获异常处理事件
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
             //非UI线程未捕获异常处理事件
-            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+            //AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
         }
 
         void App_Exit(object sender, ExitEventArgs e)
@@ -65,24 +65,28 @@ namespace Star_Rail_Tool
 
         }
 
-        void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            StringBuilder sbEx = new StringBuilder();
-            if (e.IsTerminating)
-            {
-                sbEx.Append("异常类型；非UI线程发生致命错误");
-            }
-            sbEx.Append("异常类型；非UI线程异常");
-            if (e.ExceptionObject is Exception)
-            {
-                sbEx.Append(((Exception)e.ExceptionObject).Message);
-            }
-            else
-            {
-                sbEx.Append(e.ExceptionObject);
-            }
-            MessageBox.Show(sbEx.ToString(), "请将此界面截图并反馈给开发者-快辰，已捕获得到的异常", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
+        //void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        //{
+        //    StringBuilder sbEx = new StringBuilder();
+        //    if (e.IsTerminating)
+        //    {
+        //        sbEx.AppendLine("异常类型；非UI线程发生致命错误");
+        //    }
+        //    else
+        //    {
+        //        sbEx.AppendLine("异常类型；非UI线程异常");
+        //    }
+        //    if (e.ExceptionObject is Exception)
+        //    {
+        //        sbEx.AppendLine("异常信息：" + ((Exception)e.ExceptionObject).Message);
+        //        sbEx.AppendLine("异常全部信息：" + ((Exception)e.ExceptionObject).StackTrace);
+        //    }
+        //    else
+        //    {
+        //        sbEx.Append(e.ExceptionObject);
+        //    }
+        //    MessageBox.Show(sbEx.ToString(), "请将此界面截图并反馈给开发者-快辰，已捕获得到的异常", MessageBoxButton.OK, MessageBoxImage.Error);
+        //}
 
         void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {

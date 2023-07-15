@@ -1,0 +1,119 @@
+﻿<UserControl x:Class="Star_Rail_Tool.Controls.GraphicsSettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Star_Rail_Tool.Controls"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <ui:CardExpander Margin="0,8,0,0" Icon="ContentSettings24" IsEnabled="True" IsExpanded="false">
+        <ui:CardExpander.Header>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock FontSize="13" FontWeight="Medium" Text="修改游戏图像设置" />
+                    <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="无需启动游戏进行修改游戏图像设置，点击可展开详细设置内容。" />
+                </StackPanel>
+                <ui:Button x:Name="Button_Apply" Icon="SaveEdit24" Grid.Column="1" Margin="0,0,16,0" Padding="30,6" VerticalAlignment="Center" Appearance="Secondary" Content="应用游戏图像设置" Click="Button_Apply_Click" />
+            </Grid>
+        </ui:CardExpander.Header>
+        <!--  CardExpander content  -->
+        <VirtualizingStackPanel IsVirtualizing="True" VirtualizationMode="Recycling">
+
+            <ui:CardControl Icon="TextAlignDistributed24">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock FontSize="13" FontWeight="Medium" Text="垂直同步" />
+                        <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="注意：如果显示器刷新率只有 60Hz 或 解锁了 120FPS 不要打开垂直同步！" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <ui:ToggleSwitch x:Name="ToggleSwitch_VSync" />
+            </ui:CardControl>
+
+            <ui:CardControl Margin="0,8,0,0" Icon="Multiplier2x24">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock FontSize="13" FontWeight="Medium" Text="渲染精度" />
+                        <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="提升渲染的精细程度，低配置不要开太高哦（" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <ComboBox x:Name="ComboBox_RenderScale" DisplayMemberPath="Name" SelectedValuePath="Name" />
+            </ui:CardControl>
+
+            <ui:CardControl Margin="0,8,0,0" Icon="SquareShadow20">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock FontSize="13" FontWeight="Medium" Text="阴影质量" />
+                        <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="就是阴影质量啊" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <ComboBox x:Name="ComboBox_ShadowQuality" DisplayMemberPath="Name" SelectedValuePath="ID" />
+            </ui:CardControl>
+
+            <ui:CardControl Margin="0,8,0,0" Icon="ImageReflection24">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock FontSize="13" FontWeight="Medium" Text="反射质量" />
+                        <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="就是反射质量啊" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <ComboBox x:Name="ComboBox_ReflectionQuality" DisplayMemberPath="Name" SelectedValuePath="ID" />
+            </ui:CardControl>
+
+            <ui:CardControl Margin="0,8,0,0" Icon="PeopleTeamToolbox24">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock FontSize="13" FontWeight="Medium" Text="角色质量" />
+                        <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="就是角色质量啊" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <ComboBox x:Name="ComboBox_CharacterQuality" DisplayMemberPath="Name" SelectedValuePath="ID" />
+            </ui:CardControl>
+
+            <ui:CardControl Margin="0,8,0,0" Icon="BoxToolbox24">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock FontSize="13" FontWeight="Medium" Text="场景细节" />
+                        <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="就是场景细节啊" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <ComboBox x:Name="ComboBox_EnvDetailQuality" DisplayMemberPath="Name" SelectedValuePath="ID" />
+            </ui:CardControl>
+
+            <ui:CardControl Margin="0,8,0,0" Icon="Lightbulb24">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock FontSize="13" FontWeight="Medium" Text="泛光效果" />
+                        <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="瞎眼吧！ -格雷福斯" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <ComboBox x:Name="ComboBox_BloomQuality" DisplayMemberPath="Name" SelectedValuePath="ID" />
+            </ui:CardControl>
+
+            <ui:CardControl Margin="0,8,0,0" Icon="LineDashes24">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock FontSize="13" FontWeight="Medium" Text="抗锯齿" />
+                        <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="啊！满屏幕的游(狗)戏(牙)性..." />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <ComboBox x:Name="ComboBox_AAMode" DisplayMemberPath="Name" SelectedValuePath="ID" />
+            </ui:CardControl>
+
+            <ui:CardControl Margin="0,8,0,0" Icon="BrightnessHigh24">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock FontSize="13" FontWeight="Medium" Text="光照质量" />
+                        <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="早上好，太阳要晒屁股啦" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <ComboBox x:Name="ComboBox_LightQuality" DisplayMemberPath="Name" SelectedValuePath="ID" />
+            </ui:CardControl>
+
+        </VirtualizingStackPanel>
+    </ui:CardExpander>
+</UserControl>

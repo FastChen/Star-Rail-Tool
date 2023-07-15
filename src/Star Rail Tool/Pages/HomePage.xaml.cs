@@ -47,11 +47,10 @@ namespace Star_Rail_Tool.Pages
                     break;
 
                 case "Github":
-                    Core.OpenWebBrowser("https://github.com/fastchen");
+                    Core.OpenWebBrowser("https://github.com/FastChen/Star-Rail-Tool");
                     break;
             }
         }
-
 
     }
 }

@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="Star_Rail_Tool.Controls.AudioSettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Star_Rail_Tool.Controls"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <ui:CardExpander Margin="0,8,0,0" Icon="SpeakerSettings24" IsEnabled="True" IsExpanded="False">
+        <ui:CardExpander.Header>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock FontSize="13" FontWeight="Medium" Text="修改游戏声音设置" />
+                    <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="无需启动游戏进行修改游戏声音设置，点击可展开详细设置内容。" />
+                </StackPanel>
+                <ui:Button x:Name="Button_Apply" Icon="SpeakerEdit24" Grid.Column="1" Margin="0,0,16,0" Padding="30,6" VerticalAlignment="Center" Appearance="Secondary" Content="应用游戏音频设置" Click="Button_Apply_Click" />
+            </Grid>
+        </ui:CardExpander.Header>
+        <!--  CardExpander content  -->
+        <VirtualizingStackPanel IsVirtualizing="True" VirtualizationMode="Recycling">
+
+            <TextBlock  Text="声音设置"/>
+            <ui:CardControl Icon="HeadphonesSoundWave24" Margin="0,8,0,0">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock FontSize="13" FontWeight="Medium" Text="总音量" />
+                        <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="总体音量大小" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <!--<ui:NumberBox x:Name="NumberBox_Volume_Master" Tag="Master" Min="0" Max="10" Step="1" DecimalPlaces="0" ClearButtonEnabled="False"/>-->
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <Slider x:Name="Slider_Volume_Master" IsSnapToTickEnabled="True" Width="200" VerticalAlignment="Center"/>
+                    <ui:Button Content="{Binding ElementName=Slider_Volume_Master, Path=Value}" FontSize="18" Margin="16,0,0,0" IsEnabled="False"></ui:Button>
+                </StackPanel>
+            </ui:CardControl>
+
+            <TextBlock  Text="音量平衡" Margin="0,8,0,0"/>
+            <ui:CardControl Icon="MusicNote124" Margin="0,8,0,0">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock FontSize="13" FontWeight="Medium" Text="音乐音量" />
+                        <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="调整音乐音量大小" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <!--<ui:NumberBox x:Name="NumberBox_Volume_BGM" Tag="BGM" Min="0" Max="10" Step="1" DecimalPlaces="0" ClearButtonEnabled="False"/>-->
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <Slider x:Name="Slider_Volume_BGM" IsSnapToTickEnabled="True" Width="200" VerticalAlignment="Center"/>
+                    <ui:Button Content="{Binding ElementName=Slider_Volume_BGM, Path=Value}" FontSize="18" Margin="16,0,0,0" IsEnabled="False"></ui:Button>
+                </StackPanel>
+            </ui:CardControl>
+
+            <ui:CardControl Icon="PersonVoice24"  Margin="0,8,0,0">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock FontSize="13" FontWeight="Medium" Text="语音音量" />
+                        <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="调整语音音量大小" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <!--<ui:NumberBox x:Name="NumberBox_Volume_VO" Tag="VO" Min="0" Max="10" Step="1" DecimalPlaces="0" ClearButtonEnabled="False"/>-->
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <Slider x:Name="Slider_Volume_VO" IsSnapToTickEnabled="True" Width="200" VerticalAlignment="Center"/>
+                    <ui:Button Content="{Binding ElementName=Slider_Volume_VO, Path=Value}" FontSize="18" Margin="16,0,0,0" IsEnabled="False"></ui:Button>
+                </StackPanel>
+            </ui:CardControl>
+
+            <ui:CardControl Icon="AlertUrgent24"  Margin="0,8,0,0">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock FontSize="13" FontWeight="Medium" Text="音效音量" />
+                        <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="调整音效音量大小" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <!--<ui:NumberBox x:Name="NumberBox_Volume_SFX" Tag="SFX" Min="0" Max="10" Step="1" DecimalPlaces="0" ClearButtonEnabled="False"/>-->
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <Slider x:Name="Slider_Volume_SFX" IsSnapToTickEnabled="True" Width="200" VerticalAlignment="Center"/>
+                    <ui:Button Content="{Binding ElementName=Slider_Volume_SFX, Path=Value}" FontSize="18" Margin="16,0,0,0" IsEnabled="False"></ui:Button>
+                </StackPanel>
+            </ui:CardControl>
+
+        </VirtualizingStackPanel>
+    </ui:CardExpander>
+</UserControl>

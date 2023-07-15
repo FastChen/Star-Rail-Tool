@@ -6,17 +6,18 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       xmlns:local="clr-namespace:Star_Rail_Tool.Pages"
       mc:Ignorable="d" 
+      Scrollable="True"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ChannelSwitchPage" Loaded="UiPage_Loaded">
 
-    <Grid>
+    <Grid Margin="0,0,0,24">
         <VirtualizingStackPanel x:Name="RootPanel" IsVirtualizing="True" VirtualizationMode="Recycling" Margin="0,0,38,0">
             <TextBlock  Text="用于一个游戏客户端登录不同服务器，第一次使用需要先到 [本体设置] 中设置启动器路径" TextWrapping="WrapWithOverflow" />
 
             <TextBlock
             Margin="0,24,0,0"
             Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-            Text="切换游戏登录服务器  (如遇到切换失败、闪退，则代表需要使用管理员模式运行工具)" />
+            Text="切换游戏登录服务器  (如遇到切换失败、闪退，则代表需要使用管理员模式运行工具)" FontSize="14" />
             <ui:CardControl Margin="0,8,0,0" Icon="SelectAllOn24">
                 <ui:CardControl.Header>
                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
@@ -31,20 +32,66 @@
                     </StackPanel>
                 </ui:CardControl.Header>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <ComboBox x:Name="ComboBox_Channel" Width="200" Margin="0,0,8,0">
-                        <ComboBoxItem Content="X服"></ComboBoxItem>
-                    </ComboBox>
+                    <ComboBox x:Name="ComboBox_Channel" Width="200" Margin="0,0,8,0" />
                     <Button x:Name="Button_Channel_Switch" Content="切换服务器" Click="Button_Channel_Switch_Click" VerticalAlignment="Stretch"></Button>
                 </StackPanel>
             </ui:CardControl>
+
             <TextBlock Margin="0,8,0,0" TextWrapping="WrapWithOverflow" Foreground="{DynamicResource TextFillColorSecondaryBrush}"
               Text="*第一次使用需要前往左侧选择 [本体设置] 选择启动器路径。&#x0A;*修改登录服务器时需完全退出星穹铁道，以防修改失败。&#x0A;*因切换为B服 [无名客] 时需要额外文件，切换后会自动释放所需文件。&#x0A;*如果修改无效请尝试右键软件 -> 以管理员身份运行。&#x0A;*官服 [星穹铁道] 使用支持 米游社 与 TapTap 扫码登录的登录界面。"
              />
 
-            <StackPanel Orientation="Vertical" Grid.Row="1">
-                <Button x:Name="Button_Test_A" Content="切换服务器" Click="Button_Test_A_Click" VerticalAlignment="Stretch"></Button>
+            <!--<TextBlock
+            Margin="0,24,0,0"
+            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+            Text="保存当前游戏登录状态" FontSize="14" />
+
+            <ui:CardControl Margin="0,8,0,0" Icon="Status24">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="已保存状态" />
+                        <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                        Text="保存状态可以快速切换账户。" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <ComboBox Width="200" Margin="0,0,8,0">
+                        <ComboBoxItem Content="X服"></ComboBoxItem>
+                    </ComboBox>
+                    <Button  Content="切换为当前选择状态登录" Click="Button_Channel_Switch_Click" VerticalAlignment="Stretch"></Button>
+                </StackPanel>
+            </ui:CardControl>
+
+            <ui:CardControl Margin="0,8,0,0" Icon="DocumentAdd24">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="管理已保存的状态" />
+                        <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                        Text="增、删、改、查..." />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" >
+                    <ui:Button Content="保存当前登录账户" Margin="0,0,8,0" Tag="Launcher"></ui:Button>
+                    <ui:Button Content="重命名" Margin="0,0,8,0" Tag="Game" ></ui:Button>
+                    <ui:Button Content="删除" Tag="Game" ></ui:Button>
+                </StackPanel>
+            </ui:CardControl>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,24,0,0">
+                <Button x:Name="Button_Test_A" Content="切换服务器" Click="Button_Test_A_Click" VerticalAlignment="Stretch" Margin="0,0,8,0"></Button>
                 <Button x:Name="Button_Test_B" Content="切换服务器" Click="Button_Test_B_Click" VerticalAlignment="Stretch"></Button>
-            </StackPanel>
+            </StackPanel>-->
+            
         </VirtualizingStackPanel>
     </Grid>
 </ui:UiPage>

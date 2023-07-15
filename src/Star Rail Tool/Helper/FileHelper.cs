@@ -18,5 +18,14 @@ namespace Star_Rail_Tool
         {
             return File.Exists(path);
         }
+
+        public static bool Delete(string path)
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+            return !File.Exists(path);
+        }
     }
 }

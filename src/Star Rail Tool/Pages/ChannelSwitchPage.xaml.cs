@@ -13,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 
 namespace Star_Rail_Tool.Pages
@@ -38,51 +37,77 @@ namespace Star_Rail_Tool.Pages
             ReadGameServer();
         }
 
+        private string GetConfigPath(string path)
+        {
+            string temp = Path.GetDirectoryName(path) + @"\config.ini";
+            if (FileHelper.Exists(temp))
+            {
+                return temp;
+            }
+            return null;
+        }
+
         private void InitallzeChannel()
         {
-            string launcherPath = settingini.ReadValue("Path", "Launcher");
-            string gamePath = settingini.ReadValue("Path", "Game");
+            string launcherConfigPath = GetConfigPath(settingini.ReadValue("Path", "Launcher"));
+            string gameConfigPath = GetConfigPath(settingini.ReadValue("Path", "Game"));
 
-            channel = new ChannelHelper(launcherPath, gamePath);
+            if (FileHelper.Exists(gameConfigPath))
+            {
+                channel = new ChannelHelper(launcherConfigPath, gameConfigPath);
 
-            ComboBox_Channel.Items.Clear();
-            ComboBox_Channel.ItemsSource = channel.GetChannelNames();
+                ComboBox_Channel.Items.Clear();
+                ComboBox_Channel.ItemsSource = channel.GetChannelNames();
 
-            ReadGameServer();
+                ReadGameServer();
+            }
         }
 
         public void ReadGameServer()
         {
-            int serverIndex = channel.Get();
-
-            if (serverIndex != -1)
+            if (channel != null)
             {
-                ComboBox_Channel.SelectedIndex = serverIndex;
-                TextBlock_Channel_Type.Text = "当前登录服务器：" + ComboBox_Channel.Text;
+                int serverIndex = channel.Get();
 
-                if (ComboBox_Channel.Text != lastServer)
+                if (serverIndex != -1)
                 {
-                    SnackbarHelper.ShowCaution("登录服务器状态更新", "当前登录服务器：" + ComboBox_Channel.Text);
+                    ComboBox_Channel.SelectedIndex = serverIndex;
+                    TextBlock_Channel_Type.Text = "当前登录服务器：" + ComboBox_Channel.Text;
+
+                    if (ComboBox_Channel.Text != lastServer)
+                    {
+                        SnackbarHelper.ShowCaution("登录服务器状态更新", "当前登录服务器：" + ComboBox_Channel.Text);
+                    }
                 }
+                lastServer = ComboBox_Channel.Text;
             }
-            lastServer = ComboBox_Channel.Text;
+            else
+            {
+                InitallzeChannel();
+            }
         }
 
         private void Button_Channel_Switch_Click(object sender, RoutedEventArgs e)
         {
-            channel.Set(ComboBox_Channel.SelectedIndex);
-            ReadGameServer();
-        }
-        SaveAccount save = new SaveAccount();
-        private void Button_Test_A_Click(object sender, RoutedEventArgs e)
-        {
+            if (ComboBox_Channel.SelectedIndex != -1)
+            {
+                channel.Set(ComboBox_Channel.SelectedIndex);
+                ReadGameServer();
+            }
 
-            save.SaveAccountFile("TEST");
         }
 
-        private void Button_Test_B_Click(object sender, RoutedEventArgs e)
-        {
-            save.WriteAccountRegKey("TEST");
-        }
+
+        //SaveAccount save = new SaveAccount();
+        //private void Button_Test_A_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //    save.SaveAccountFile("TEST");
+        //}
+
+        //private void Button_Test_B_Click(object sender, RoutedEventArgs e)
+        //{
+        //    save.WriteAccountRegKey("TEST");
+        //}
     }
 }

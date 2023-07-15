@@ -1,0 +1,74 @@
+﻿<ui:UiPage x:Class="Star_Rail_Tool.Pages.GetWarpLinkPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:Star_Rail_Tool.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Scrollable="True"
+      Title="GetWarpLinkPage">
+
+    <Grid Margin="0,0,0,24">
+        <VirtualizingStackPanel x:Name="RootPanel" IsVirtualizing="True" VirtualizationMode="Recycling" Margin="0,0,38,0">
+            <TextBlock  Text="获取跃迁抽卡的链接，可以用于其它跃迁可视化工具。" TextWrapping="WrapWithOverflow" />
+
+            <TextBlock
+            Margin="0,24,0,0"
+            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+            Text="步骤一" FontSize="14" />
+            <ui:CardControl Margin="0,8,0,0" Icon="NumberCircle124">
+                <ui:CardControl.Header>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="开启代理" />
+                        <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                        Text="通过调用代理模式获取" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" >
+                    <ui:Button x:Name="Button_Proxy_Start" Content="启动代理" Appearance="Primary" Margin="0,0,8,0" Click="Button_Proxy_Start_Click"></ui:Button>
+                    <ui:Button x:Name="Button_Proxy_Stop"  Content="关闭代理" Margin="0,0,8,0" Click="Button_Proxy_Stop_Click"></ui:Button>
+                    <ui:Button x:Name="Button_Remove_Certificate"  Content="移除证书" Appearance="Caution" Click="Button_Remove_Certificate_Click" ></ui:Button>
+                </StackPanel>
+            </ui:CardControl>
+
+            <ui:InfoBar Title="提示" Message="*成功获取后会自动关闭代理，证书不用可以进行删除" IsOpen="True" IsClosable="False" Margin="0,8,0,0"/>
+
+            <TextBlock
+            Margin="0,24,0,0"
+            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+            Text="步骤二" FontSize="14" />
+
+            <ui:InfoBar Title="操作步骤:" Message="运行游戏并打开跃迁页面[F3] > 点击 [历史记录] 后等待软件自动获取" IsOpen="True" IsClosable="False" Margin="0,8,0,0" Severity="Success" />
+
+            <TextBlock
+            Margin="0,24,0,0"
+            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+            Text="步骤三" FontSize="14" />
+
+            <ui:CardExpander x:Name="CradExpander_Link" Icon="DatabaseLink24">
+                <ui:CardExpander.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock FontSize="13" FontWeight="Medium" Text="等待结果" />
+                            <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="正常获取后，将自动打开并在下方显示完整链接。" />
+                        </StackPanel>
+                    </Grid>
+                </ui:CardExpander.Header>
+                <RichTextBox x:Name="RichTextBox_Log" IsReadOnly="True"  Height="200"/>
+            </ui:CardExpander>
+
+
+        </VirtualizingStackPanel>
+    </Grid>
+</ui:UiPage>

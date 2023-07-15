@@ -7,15 +7,39 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>StarRail_NullCraft.ico</ApplicationIcon>
+    <Title>星穹铁道切服工具</Title>
+    <Copyright>快辰、灵工艺</Copyright>
+    <PackageProjectUrl>https://fastchen.com/</PackageProjectUrl>
+    <FileVersion></FileVersion>
+    <AssemblyVersion>1.1.0.618</AssemblyVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="StarRail_NullCraft.ico" />
+    <None Remove="Resources\StarRail_NullCraft.ico" />
+    <None Remove="Resources\StarRail_NullCraft.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="StarRail_NullCraft.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Titanium.Web.Proxy" Version="3.2.0" />
     <PackageReference Include="WPF-UI" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\StarRail_NullCraft.ico" />
+    <Resource Include="Resources\StarRail_NullCraft.png" />
   </ItemGroup>
 
   <ItemGroup>

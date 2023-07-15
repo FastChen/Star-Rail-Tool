@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,13 @@ namespace Star_Rail_Tool
 
         public ChannelHelper(string launcherPath, string gamePath)
         {
-            LauncherConfigPath = Path.GetDirectoryName(launcherPath) + @"\config.ini";
-            GameConfigPath = Path.GetDirectoryName(gamePath) + @"\config.ini";
+            LauncherConfigPath = launcherPath;
+            GameConfigPath = gamePath;
 
             PCGameSDKPath = Path.GetDirectoryName(GameConfigPath) + @"\StarRail_Data\Plugins\PCGameSDK.dll";
+
+            //File.Delete(GameConfigPath);
+            //Trace.WriteLine("诡异文件(居然能在 \ 目录创建文件？？？)："+File.Exists(GameConfigPath));
 
             InitializeChannelList();
         }
@@ -93,7 +97,7 @@ namespace Star_Rail_Tool
         {
             IniFile iniFile = new IniFile(GameConfigPath);
             //写出启动器配置
-            System.Diagnostics.Trace.WriteLine("GetChannel" + GameConfigPath);
+            System.Diagnostics.Trace.WriteLine("GetChannel:" + GameConfigPath);
             System.Diagnostics.Trace.WriteLine(iniFile.ReadValue("General", "channel"));
             ChannelEntity server = channelList.Find(delegate (ChannelEntity s) { return s.Channel == Convert.ToInt32(iniFile.ReadValue("General", "channel")); });
             return server.ID;
@@ -105,18 +109,25 @@ namespace Star_Rail_Tool
         /// <param name="index"></param>
         public void Set(int index)
         {
-            ChannelEntity server = channelList.Find(delegate (ChannelEntity s) { return s.ID == index; });
-
-            if (server.Channel == 14)
+            if (FileHelper.Exists(GameConfigPath))
             {
-                ExportNeedFiles(PCGameSDKPath);
-            }
-            if (server.Channel == 1)
-            {
-                DeleteExportFiles(PCGameSDKPath);
-            }
+                ChannelEntity server = channelList.Find(delegate (ChannelEntity s) { return s.ID == index; });
 
-            SetChannel(server.Channel, server.CPS, server.SubChannel);
+                if (server.Channel == 14)
+                {
+                    ExportNeedFiles(PCGameSDKPath);
+                }
+                if (server.Channel == 1)
+                {
+                    DeleteExportFiles(PCGameSDKPath);
+                }
+
+                SetChannel(server.Channel, server.CPS, server.SubChannel);
+            }
+            else
+            {
+                SnackbarHelper.ShowDanger("错误：游戏配置文件不存在", "前往 [本体设置] 重新设置启动器路径后再试。");
+            }
         }
 
         /// <summary>
@@ -127,17 +138,31 @@ namespace Star_Rail_Tool
         /// <param name="SubChannel"></param>
         private void SetChannel(int channel, string cps, int SubChannel)
         {
-            IniFile iniLauncher = new IniFile(LauncherConfigPath);
-            //写出启动器配置
-            iniLauncher.WriteValue("launcher", "channel", channel.ToString());
-            iniLauncher.WriteValue("launcher", "cps", cps);
-            iniLauncher.WriteValue("launcher", "sub_channel", SubChannel.ToString());
+            if (FileHelper.Exists(LauncherConfigPath))
+            {
+                IniFile iniLauncher = new IniFile(LauncherConfigPath);
+                //写出启动器配置
+                iniLauncher.WriteValue("launcher", "channel", channel.ToString());
+                iniLauncher.WriteValue("launcher", "cps", cps);
+                iniLauncher.WriteValue("launcher", "sub_channel", SubChannel.ToString());
+            }
+            else
+            {
+                SnackbarHelper.ShowDanger("错误：启动器 Config.ini 文件丢失",  "无法修改启动器的 Config.ini 文件。");
+            }
 
-            IniFile iniGame = new IniFile(GameConfigPath);
-            //写出游戏配置
-            iniGame.WriteValue("General", "channel", channel.ToString());
-            iniGame.WriteValue("General", "cps", cps);
-            iniGame.WriteValue("General", "sub_channel", SubChannel.ToString());
+            if (FileHelper.Exists(GameConfigPath))
+            {
+                IniFile iniGame = new IniFile(GameConfigPath);
+                //写出游戏配置
+                iniGame.WriteValue("General", "channel", channel.ToString());
+                iniGame.WriteValue("General", "cps", cps);
+                iniGame.WriteValue("General", "sub_channel", SubChannel.ToString());
+            }
+            else
+            {
+                SnackbarHelper.ShowDanger("错误：游戏 Config.ini 文件丢失", "切换登录服务器失败，前往 [本体设置] 重新设置游戏路径。");
+            }
         }
 
         /// <summary>

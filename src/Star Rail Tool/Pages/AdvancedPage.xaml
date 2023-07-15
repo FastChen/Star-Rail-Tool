@@ -5,10 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       xmlns:local="clr-namespace:Star_Rail_Tool.Pages"
+      xmlns:control="clr-namespace:Star_Rail_Tool.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="800"
       Scrollable="True"
-      Title="AdvancedPage">
+      Title="AdvancedPage" Loaded="UiPage_Loaded">
 
     <Grid Margin="0,0,0,24">
         <VirtualizingStackPanel x:Name="RootPanel" IsVirtualizing="True" VirtualizationMode="Recycling" Margin="0,0,38,0">
@@ -17,30 +18,36 @@
             <TextBlock
             Margin="0,24,0,0"
             Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-            Text="解锁 120FPS" />
-            <ui:CardControl Margin="0,8,0,0" Icon="Fps12024">
+            Text="游戏设置" FontSize="14" />
+            <ui:CardControl x:Name="CardControl_FPS" Margin="0,8,0,0" Icon="LockClosed24">
                 <ui:CardControl.Header>
                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
                         <TextBlock
+                            x:Name="TextBlock_FPS_Title"
                         FontSize="13"
                         FontWeight="Medium"
-                        Text="解锁 120FPS" />
+                        Text="修改帧数上限" />
                         <TextBlock
                         FontSize="12"
                         Foreground="{DynamicResource TextFillColorTertiaryBrush}"
-                        Text="注意：解锁会导致设置图像损坏，无法修改，使用软件恢复即可。" />
+                        Text="注意：解锁 120FPS 特征是游戏图像设置损坏，可以用下面栏目进行修改设置 或 取消 120FPS" />
                     </StackPanel>
                 </ui:CardControl.Header>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <ui:Button x:Name="Button_FPS_120" Icon="Fps12024" Appearance="Danger" Content="解锁 120 FPS!" Margin="0,0,8,0" Click="Button_FPS_Modify" Tag="120"></ui:Button>
-                    <ui:Button x:Name="Button_FPS_60" Icon="Fps6024" Appearance="Secondary" Content="恢复 60 FPS" Click="Button_FPS_Modify" Tag="60"></ui:Button>
+                    <ui:Button x:Name="Button_FPS_60" Icon="Fps6024" Appearance="Caution" Content="设置为 60 FPS" Margin="0,0,8,0" Click="Button_FPS_Modify" Tag="60"></ui:Button>
+                    <ui:Button x:Name="Button_FPS_30" Icon="Fps3024" Appearance="Secondary" Content="设置为 30 FPS" Click="Button_FPS_Modify" Tag="30"></ui:Button>
                 </StackPanel>
             </ui:CardControl>
 
-            <TextBlock
+            <control:GraphicsSettingsControl></control:GraphicsSettingsControl>
+            <control:AudioSettingsControl></control:AudioSettingsControl>
+            <!--<ItemsControl>-->
+
+                <TextBlock
             Margin="0,24,0,0"
             Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-            Text="设置窗口类型 (目前此功能会被游戏设置覆盖，寻找其它方法中...)" />
+            Text="设置窗口类型 (目前此功能会被游戏设置覆盖，寻找其它方法中...)" FontSize="14" />
             <ui:CardControl Margin="0,8,0,0" Icon="WindowSettings20">
                 <ui:CardControl.Header>
                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
@@ -96,7 +103,7 @@
             <TextBlock
             Margin="0,24,0,0"
             Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-            Text="自定义命令行" />
+            Text="自定义命令行" FontSize="14" />
             <ui:CardControl Margin="0,8,0,0" Icon="Code24">
                 <ui:CardControl.Header>
                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
@@ -108,7 +115,7 @@
             <TextBlock
             Margin="0,24,0,0"
             Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-            Text="测试游戏" />
+            Text="测试游戏" FontSize="14" />
             <ui:CardControl Margin="0,8,0,0" Icon="PersonRunning20">
                 <ui:CardControl.Header>
                     <StackPanel Grid.Column="0" VerticalAlignment="Center">

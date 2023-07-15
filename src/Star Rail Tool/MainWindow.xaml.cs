@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -13,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Ui.Appearance;
 using Wpf.Ui.Controls;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
@@ -25,21 +28,78 @@ namespace Star_Rail_Tool
     /// </summary>
     public partial class MainWindow : UiWindow
     {
-        private string title = "星穹铁道工具 | 临时名称 参与问卷为软件命名 - FastChen";
-        private string preVersion = "[Dev] 23n17d";
+        private string title = "星穹之匙 | The key of Star Rail - FastChen";
+        private string version = "v" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public static MainWindow mainWindows;
+        //public NotifyIcon notifyIcon = new NotifyIcon();
+        public IniFile settingini = new IniFile(SettingEntity.iniFilePath);
         public MainWindow()
         {
             InitializeComponent();
+            SetTheme();
+            SetWindowSize();
+
+            InitializeUI();
+            //TitleBar.Icon = new BitmapImage(new Uri(Properties.Resources.StarRail_NullCraft.ToString()));
             mainWindows = this;
 
-            title = preVersion + " "+ title;
             if (Core.IsAdministrator())
             {
                 title = "[管理员] " + title;
             }
+
+            title += " " + version;
+
             this.Title= title;
             TitleBar.Title = title;
+        }
+
+        private void InitializeUI()
+        {
+            //Wpf.Ui.Appearance.Accent.ApplySystemAccent();
+            //Wpf.Ui.Appearance.Background.Apply(this, Wpf.Ui.Appearance.BackgroundType.None);
+
+            //Wpf.Ui.Appearance.Watcher.Watch(this);
+
+        }
+
+        private void SetTheme()
+        {
+            string theme = settingini.ReadValue("Software", "Theme");
+
+            if (theme == "Dark")
+            {
+                Wpf.Ui.Appearance.Theme.Apply(ThemeType.Dark);
+            }
+            else
+            {
+                Wpf.Ui.Appearance.Theme.Apply(ThemeType.Light);
+            }
+
+            //if (theme == "Dark")
+            //{
+            //    Wpf.Ui.Appearance.Theme.Apply(ThemeType.Dark);
+            //} else if (theme == "Light")
+            //{
+            //    Wpf.Ui.Appearance.Theme.Apply(ThemeType.Light);
+            //}
+            //else
+            //{
+            //   Wpf.Ui.Appearance.Watcher.Watch(this);
+            //}
+        }
+        private void SetWindowSize()
+        {
+            string wWidth = settingini.ReadValue("Software", "WindowWidth");
+            string wHeight = settingini.ReadValue("Software", "WindowHeight");
+            if (!string.IsNullOrEmpty(wWidth))
+            {
+                this.Width = Convert.ToInt32(wWidth);
+            }
+            if (!string.IsNullOrEmpty(wHeight))
+            {
+                this.Height = Convert.ToInt32(wHeight);
+            }
         }
 
         private void UiWindow_Loaded(object sender, RoutedEventArgs e)
@@ -47,23 +107,25 @@ namespace Star_Rail_Tool
 
         }
 
-        private void NavigationButtonTheme_OnClick(object sender, RoutedEventArgs e)
+        private void UiWindow_Closed(object sender, EventArgs e)
         {
-            var test = Wpf.Ui.Appearance.Theme.GetAppTheme();
-            if (test == Wpf.Ui.Appearance.ThemeType.Dark)
+            if (this.WindowState == WindowState.Normal)
             {
-                Wpf.Ui.Appearance.Theme.Apply(Wpf.Ui.Appearance.ThemeType.Light, Wpf.Ui.Appearance.BackgroundType.Mica, true);
+                settingini.WriteValue("Software", "WindowWidth", ((int)Width).ToString());
+                settingini.WriteValue("Software", "WindowHeight", ((int)Height).ToString());
             }
-            else
-            {
-                Wpf.Ui.Appearance.Theme.Apply(Wpf.Ui.Appearance.ThemeType.Dark, Wpf.Ui.Appearance.BackgroundType.Mica, true);
-            }
-
         }
+
+        //private void NavigationButtonTheme_OnClick(object sender, RoutedEventArgs e)
+        //{
+        //    Wpf.Ui.Appearance.Theme.Apply(Theme.GetAppTheme() == Wpf.Ui.Appearance.ThemeType.Dark ? Wpf.Ui.Appearance.ThemeType.Light : Wpf.Ui.Appearance.ThemeType.Dark, Wpf.Ui.Appearance.BackgroundType.Mica);
+        //    settingini.WriteValue("Software", "Theme", Theme.GetAppTheme().ToString());
+        //}
 
         private void ActionDialog_OnButtonRightClick(object sender, RoutedEventArgs e)
         {
             RootDialog.Hide();
         }
+
     }
 }
